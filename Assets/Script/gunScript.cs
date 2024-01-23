@@ -17,9 +17,14 @@ public class gunScript : MonoBehaviour
     int currentAmmo;
     public Camera fpsCam;
 
+    Animator anim;
+    public float reloadTime = 1f;
+    bool isScope;
+
     private void Start()
     {
         currentAmmo = maxAmmo;
+        anim = GetComponent<Animator>();
     }
     void Update()
     {
@@ -32,6 +37,23 @@ public class gunScript : MonoBehaviour
             return;
         }
 
+        if(Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (!isScope)
+            {
+                anim.SetBool("scope", true);
+                isScope = true;
+                fpsCam.fieldOfView = 45;
+            }
+
+            else
+            {
+                anim.SetBool("scope", false);
+                isScope  = false;
+                fpsCam.fieldOfView = 60;
+            }
+        }
+
         if(Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + 1f / fireRate;
@@ -42,9 +64,15 @@ public class gunScript : MonoBehaviour
     IEnumerator Reload()
     {
         Debug.Log("Reloading");
+
         isReloading = true;
 
-        yield return new WaitForSeconds(1f);
+        anim.SetBool("Reload", true);
+        yield return new WaitForSeconds(reloadTime - 0.25f);
+
+        anim.SetBool("Reload", false);
+        yield return new WaitForSeconds( 0.25f);
+
         currentAmmo = maxAmmo;
         isReloading = false;
     }
