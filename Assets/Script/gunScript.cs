@@ -31,7 +31,7 @@ public class gunScript : MonoBehaviour
         if (isReloading)
             return;
 
-        if(currentAmmo <= 0)
+        if(currentAmmo <= 0 || Input.GetKey(KeyCode.R))
         {
             StartCoroutine(Reload());
             return;
@@ -88,11 +88,12 @@ public class gunScript : MonoBehaviour
         {
             Debug.Log(rayHit.transform.name);   
 
-            if(rayHit.rigidbody != null)      // when goli touch with object then move the object
+            if(rayHit.rigidbody != null)      // when Bullet touch with object then move the object
             {
                 rayHit.rigidbody.AddForce(-rayHit.normal * impactForce);
             }
 
+            // for the decrease health of the object or doing damage
             enemyScript Enemy = rayHit.transform.GetComponent<enemyScript>();
             if(Enemy != null)
             {
