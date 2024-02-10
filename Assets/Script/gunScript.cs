@@ -26,6 +26,7 @@ public class gunScript : MonoBehaviour
         currentAmmo = maxAmmo;
         anim = GetComponent<Animator>();
     }
+
     void Update()
     {
         if (isReloading)
@@ -37,27 +38,33 @@ public class gunScript : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (!isScope)
-            {
-                anim.SetBool("scope", true);
-                isScope = true;
-                fpsCam.fieldOfView = 45;
-            }
+    }
 
-            else
-            {
-                anim.SetBool("scope", false);
-                isScope  = false;
-                fpsCam.fieldOfView = 60;
-            }
+    public void scope()
+    {
+        if (!isScope)
+        {
+            anim.SetBool("scope", true);
+            isScope = true;
+            fpsCam.fieldOfView = 45;
         }
 
-        if(Input.GetButton("Fire1") && Time.time >= nextFireTime)
+        else
         {
-            nextFireTime = Time.time + 1f / fireRate;
-            shoot();
+            anim.SetBool("scope", false);
+            isScope = false;
+            fpsCam.fieldOfView = 60;
+        }
+    }
+    public void Fire()
+    {
+        if (Time.time >= nextFireTime)
+        {
+            if(!isReloading)
+            {
+                nextFireTime = Time.time + 1f / fireRate;
+                shoot();
+            }
         }
     }
 
