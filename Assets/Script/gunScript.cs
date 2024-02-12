@@ -101,7 +101,7 @@ public class gunScript : MonoBehaviour
             }
 
             // for the decrease health of the object or doing damage
-            enemyScript Enemy = rayHit.transform.GetComponent<enemyScript>();
+            enemyAIScript Enemy = rayHit.transform.GetComponent<enemyAIScript>();
             if(Enemy != null)
             {
                 Enemy.getDamage(damage);

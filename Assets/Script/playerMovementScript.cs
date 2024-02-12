@@ -14,20 +14,43 @@ public class playerMovementScript : MonoBehaviour
     public float mouseSensitivity = 5f;
     public Camera cam;
 
+    [Header("Mobile Controll")]
     public bool enableMobileInputs = false;
     public FixedJoystick joyStick;
     public FixedTouchField touchFie;
-    
+
+    [Header("Jump")]
+    public float jumpForce = 5f;
+    public LayerMask groundMask;
+    public float groundDistance = 1f;
+    bool isGrounded;
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        isGrounded = Physics.CheckSphere(transform.position, groundDistance, groundMask);
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            jump();
+        }
+    }
     void FixedUpdate()
     {
         playerMovement();
         playerRotation();
+    }
+
+    public void jump()
+    {
+        if(isGrounded)
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     void playerMovement()

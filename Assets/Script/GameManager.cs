@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public TextMeshProUGUI scoreText;
     public GameObject pauseMenu;
+    public GameObject pausebutton;
 
     private void Awake()
     {
@@ -31,17 +32,16 @@ public class GameManager : MonoBehaviour
         scoreText.text = points.ToString();
     }
 
-    private void Update()
+    public void pauseButton()
     {
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-        }
+        pausebutton.SetActive(false);
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void Resume()
     {
+        pausebutton.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
