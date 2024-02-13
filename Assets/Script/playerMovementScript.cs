@@ -7,23 +7,23 @@ using UnityEngine.UI;
 public class playerMovementScript : MonoBehaviour
 {
 
-    public float speed = 10f;
+    [SerializeField] private float speed = 10f;
     Rigidbody rb;
 
     [Header("Camera")]
-    public float mouseSensitivity = 5f;
-    public Camera cam;
+    [SerializeField] private float mouseSensitivity = 5f;
+    [SerializeField] private Camera cam;
 
     [Header("Mobile Controll")]
-    public bool enableMobileInputs = false;
-    public FixedJoystick joyStick;
-    public FixedTouchField touchFie;
+    [SerializeField] private bool enableMobileInputs = false;
+    [SerializeField] private FixedJoystick joyStick;
+    [SerializeField] private FixedTouchField touchFie;
 
     [Header("Jump")]
-    public float jumpForce = 5f;
-    public LayerMask groundMask;
-    public float groundDistance = 1f;
-    bool isGrounded;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float groundDistance = 1f;
+    [SerializeField] private bool isGrounded;
 
 
 
@@ -49,6 +49,7 @@ public class playerMovementScript : MonoBehaviour
 
     public void jump()
     {
+        Debug.Log("Emter in jump Function");
         if(isGrounded)
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }

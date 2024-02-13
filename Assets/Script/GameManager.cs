@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int points = 0;
-    public TextMeshProUGUI scoreText;
-    public GameObject pauseMenu;
-    public GameObject pausebutton;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject pausebutton;
 
     private void Awake()
     {

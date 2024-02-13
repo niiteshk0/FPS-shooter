@@ -5,15 +5,15 @@ using UnityEngine.AI;
 
 public class enemyAIScript : MonoBehaviour
 {
-    public GameObject player;
     NavMeshAgent navMeshAgent;
-    public Animator anim;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Animator anim;
 
-    public float onDetectionRadius = 10f;
-    public float health = 50f;
+    [SerializeField] private float onDetectionRadius = 10f;
+    [SerializeField] private float health = 50f;
+    [SerializeField] private float deathDestroyTime = 3f;
     int points = 5;
     bool enemyDeath;
-    [SerializeField] private float deathDestroyTime = 3f;
 
     void Start()
     {

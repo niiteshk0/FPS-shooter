@@ -5,20 +5,24 @@ using UnityEngine;
 public class gunScript : MonoBehaviour
 {
     public float damage = 10f;
-    public float range = 100f;
-    public float impactForce = 250f;
-    public float fireRate = 15f;
-    public ParticleSystem muzzleFlash;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float impactForce = 250f;
+    [SerializeField] private float fireRate = 15f;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     float nextFireTime = 0f;
 
+    [SerializeField] private int maxAmmo = 10;
+    [SerializeField] private Camera fpsCam;
     bool isReloading = false;
-    public int maxAmmo = 10;
     int currentAmmo;
-    public Camera fpsCam;
 
+    [SerializeField] private float reloadTime = 1f;
+    [SerializeField] private AudioSource bulletAudio;
+    public ParticleSystem bloodSplashEffect;
+
+    public RaycastHit rayHit;
     Animator anim;
-    public float reloadTime = 1f;
     bool isScope;
 
     private void Start()
@@ -46,14 +50,14 @@ public class gunScript : MonoBehaviour
         {
             anim.SetBool("scope", true);
             isScope = true;
-            fpsCam.fieldOfView = 45;
+            fpsCam.fieldOfView = 45;   // when scope in zoom in camera
         }
 
         else
         {
             anim.SetBool("scope", false);
             isScope = false;
-            fpsCam.fieldOfView = 60;
+            fpsCam.fieldOfView = 60;  // when scope out zoom out camera
         }
     }
     public void Fire()
@@ -62,6 +66,7 @@ public class gunScript : MonoBehaviour
         {
             if(!isReloading)
             {
+                bulletAudio.Play();
                 nextFireTime = Time.time + 1f / fireRate;
                 shoot();
             }
@@ -84,13 +89,12 @@ public class gunScript : MonoBehaviour
         isReloading = false;
     }
 
-    void shoot()
+    public void shoot()
     {
         muzzleFlash.Play();
         currentAmmo--;
 
-        RaycastHit rayHit;
-        
+
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out rayHit, range))
         {
             Debug.Log(rayHit.transform.name);   
@@ -98,6 +102,11 @@ public class gunScript : MonoBehaviour
             if(rayHit.rigidbody != null)      // when Bullet touch with object then move the object
             {
                 rayHit.rigidbody.AddForce(-rayHit.normal * impactForce);
+            }
+
+            if(rayHit.collider.gameObject.CompareTag("Enemy"))
+            {
+                Instantiate(bloodSplashEffect, rayHit.point, Quaternion.identity).Play();
             }
 
             // for the decrease health of the object or doing damage

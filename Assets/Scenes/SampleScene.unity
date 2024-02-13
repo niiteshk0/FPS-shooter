@@ -897,6 +897,7 @@ MonoBehaviour:
   anim: {fileID: 132571748}
   onDetectionRadius: 15
   health: 50
+  deathDestroyTime: 3
 --- !u!195 &132571747
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -950,44 +951,30 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.1, z: 0}
---- !u!1 &132997716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
-  m_PrefabInstance: {fileID: 1332471883}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &132997717 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
-  m_PrefabInstance: {fileID: 1332471883}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &132997718 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
-  m_PrefabInstance: {fileID: 1332471883}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &132997719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132997716}
+  m_GameObject: {fileID: 919132148205016346}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53c29b1317f185749b2c39067f90cd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1293305143}
-  anim: {fileID: 132997717}
+  anim: {fileID: 5866666020716631514}
   onDetectionRadius: 15
   health: 50
+  deathDestroyTime: 3
 --- !u!195 &132997720
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132997716}
+  m_GameObject: {fileID: 919132148205016346}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -1009,7 +996,7 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132997716}
+  m_GameObject: {fileID: 919132148205016346}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1029,6 +1016,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &132997722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148205016346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9145a7ad6ffbd8643bd70f7532cce17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &239404867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 132997718}
+  - {fileID: 543450652409761696}
   - {fileID: 1451135831}
   - {fileID: 893354289}
   - {fileID: 132571745}
@@ -3120,6 +3119,7 @@ MonoBehaviour:
   anim: {fileID: 893354292}
   onDetectionRadius: 15
   health: 50
+  deathDestroyTime: 3
 --- !u!195 &893354291
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3433,6 +3433,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1774471572}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1774471575}
   m_SourcePrefab: {fileID: 100100000, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
 --- !u!4 &982547416 stripped
 Transform:
@@ -3465,6 +3468,7 @@ MonoBehaviour:
   anim: {fileID: 1054354980}
   onDetectionRadius: 15
   health: 50
+  deathDestroyTime: 3
 --- !u!195 &1054354979
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3915,7 +3919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1218462001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3935,8 +3939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -400, y: -400}
+  m_AnchoredPosition: {x: 49.5587, y: 0}
+  m_SizeDelta: {x: -1133.4688, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1218462002
 MonoBehaviour:
@@ -4410,7 +4414,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  groundDistance: 1
+  groundDistance: 1.06
+  isGrounded: 0
 --- !u!1001 &1332471883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4492,6 +4497,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 132997719}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 132997722}
   m_SourcePrefab: {fileID: 100100000, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
 --- !u!1 &1335267985
 GameObject:
@@ -4655,6 +4663,7 @@ MonoBehaviour:
   anim: {fileID: 1451135834}
   onDetectionRadius: 15
   health: 50
+  deathDestroyTime: 3
 --- !u!195 &1451135833
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5455,6 +5464,8 @@ MonoBehaviour:
   maxAmmo: 10
   fpsCam: {fileID: 963194227}
   reloadTime: 1
+  bulletAudio: {fileID: 1774471575}
+  bloodSplashEffect: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
 --- !u!95 &1774471572
 Animator:
   serializedVersion: 5
@@ -5476,6 +5487,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1774471575
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774471566}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c8f15edf93767a2459f626537f1a8447, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1779278606
 GameObject:
   m_ObjectHideFlags: 0
@@ -6506,6 +6613,7 @@ MonoBehaviour:
   anim: {fileID: 2138289552}
   onDetectionRadius: 15
   health: 50
+  deathDestroyTime: 3
 --- !u!195 &2138289551
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6693,6 +6801,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138750196}
   m_CullTransparentMesh: 1
+--- !u!4 &543450652409761696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
+  m_PrefabInstance: {fileID: 1332471883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &919132148205016346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
+  m_PrefabInstance: {fileID: 1332471883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5866666020716631514 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5de0e6d9733cdde4c97de89616e61b2c, type: 3}
+  m_PrefabInstance: {fileID: 1332471883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
