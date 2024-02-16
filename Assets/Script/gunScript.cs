@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class gunScript : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class gunScript : MonoBehaviour
     Animator anim;
     bool isScope;
 
+    [SerializeField] private TextMeshProUGUI ammoText;
+
     private void Start()
     {
         currentAmmo = maxAmmo;
@@ -33,15 +37,23 @@ public class gunScript : MonoBehaviour
 
     void Update()
     {
+        ammoText.text = currentAmmo.ToString();
+
         if (isReloading)
             return;
 
-        if(currentAmmo <= 0 || Input.GetKey(KeyCode.R))
+        if(currentAmmo <= 0)
         {
             StartCoroutine(Reload());
             return;
         }
 
+    }
+
+    public void PressGunReload()
+    {
+        if(currentAmmo != maxAmmo)
+            StartCoroutine(Reload());
     }
 
     public void scope()
@@ -93,11 +105,12 @@ public class gunScript : MonoBehaviour
     {
         muzzleFlash.Play();
         currentAmmo--;
+        ammoText.text = currentAmmo.ToString();
 
 
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out rayHit, range))
         {
-            Debug.Log(rayHit.transform.name);   
+            //Debug.Log(rayHit.transform.name);   
 
             if(rayHit.rigidbody != null)      // when Bullet touch with object then move the object
             {
@@ -106,7 +119,8 @@ public class gunScript : MonoBehaviour
 
             if(rayHit.collider.gameObject.CompareTag("Enemy"))
             {
-                Instantiate(bloodSplashEffect, rayHit.point, Quaternion.identity).Play();
+                ParticleSystem bloodInstance =  Instantiate(bloodSplashEffect, rayHit.point, Quaternion.identity);
+                bloodInstance.Play();
             }
 
             // for the decrease health of the object or doing damage
