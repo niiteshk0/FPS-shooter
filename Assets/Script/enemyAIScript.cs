@@ -16,7 +16,6 @@ public class enemyAIScript : MonoBehaviour
     public float health = 50f;
     int points = 5;
     bool enemyDeath;
-    HealthBarScript healthBarScript;
 
     //[Header("Health Bar")]
     //public Slider healthBar;
@@ -24,7 +23,6 @@ public class enemyAIScript : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        healthBarScript = GetComponent<HealthBarScript>();
     }
 
     // Update is called once per frame
@@ -67,10 +65,7 @@ public class enemyAIScript : MonoBehaviour
     public void getDamage(float damage)
     {
         health -= damage;
-        healthBarScript.TakeHealth(health);
-        Debug.Log(health);
-
-
+        
         if (health <= 0)
         {
             if(!enemyDeath)
